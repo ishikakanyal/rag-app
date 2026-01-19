@@ -40,7 +40,7 @@ export default async function handler(
     // 2. Retrieve chunks
     console.log('Step 2: Retrieving chunks from Pinecone...');
     const retrievalStart = Date.now();
-    let retrieved;
+    let retrieved: any[] = [];
     try {
       retrieved = await retrieveChunks(query, queryEmbedding, 10);
       console.log(`✓ Retrieved ${retrieved.length} chunks`);
