@@ -7,7 +7,7 @@ let pinecone: Pinecone | null = null;
 function getPineconeClient(): Pinecone {
   if (!pinecone) {
     pinecone = new Pinecone({
-      apiKey: process.env.PINECONE_API_KEY,
+      apiKey: process.env.PINECONE_API_KEY as string,
     });
   }
   return pinecone;
