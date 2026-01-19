@@ -55,11 +55,11 @@ Be concise and accurate.`;
   const answer = data.choices[0].message.content;
 
   // Extract citation indices from answer
-  const citationMatches = answer.match(/\[\d+\]/g) || [];
+  const citationMatches = (answer.match(/\[\d+\]/g) || []) as string[];
   const citations: CitationSource[] = [];
   const usedIndices = new Set<number>();
 
-  citationMatches.forEach((match) => {
+  for (const match of citationMatches) {
     const idx = parseInt(match.slice(1, -1)) - 1;
     if (idx >= 0 && idx < chunks.length && !usedIndices.has(idx)) {
       usedIndices.add(idx);
@@ -70,7 +70,7 @@ Be concise and accurate.`;
         score: chunks[idx].reranker_score,
       });
     }
-  });
+  }
 
   return {
     answer,

@@ -2,13 +2,21 @@
 import { Pinecone } from '@pinecone-database/pinecone';
 import { TextChunk, RetrievedChunk } from './types';
 
-const pinecone = new Pinecone({
-  apiKey: process.env.PINECONE_API_KEY,
-});
+let pinecone: Pinecone | null = null;
+
+function getPineconeClient(): Pinecone {
+  if (!pinecone) {
+    pinecone = new Pinecone({
+      apiKey: process.env.PINECONE_API_KEY,
+    });
+  }
+  return pinecone;
+}
 
 export async function getIndex() {
+  const client = getPineconeClient();
   const indexName = process.env.PINECONE_INDEX_NAME || 'rag-index';
-  return pinecone.Index(indexName);
+  return client.Index(indexName);
 }
 
 export async function upsertChunks(chunks: TextChunk[]): Promise<void> {
