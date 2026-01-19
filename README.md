@@ -2,6 +2,8 @@
 
 A production-ready Retrieval Augmented Generation (RAG) application that lets users upload documents, ask questions, and receive AI-generated answers with citations backed by source chunks.
 
+**🚀 Live Demo**: https://rag-app-production-8227.up.railway.app/
+
 ## Features
 
 - 📄 **Document Upload**: Paste text or upload files (.txt, .md)
